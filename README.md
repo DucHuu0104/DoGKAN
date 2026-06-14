@@ -56,11 +56,9 @@ DATASET = "SEED_V"
 
 All dataset-specific paths, labels, class counts, and loaders are selected automatically.
 
-No other file needs to be modified.
-
 ## Usage
 
-You can train the model using a Leave-One-Subject-Out (LOSO) cross-validation strategy. By default, the script trains on session 2.
+You can train the model using a Leave-One-Subject-Out (LOSO) cross-validation strategy.
 
 ### Basic Run
 
@@ -77,12 +75,6 @@ You can specify which sessions and subjects to evaluate on via command-line argu
 ```bash
 python main.py --sessions 1 2 3 --subjects S1_P1 S1_P2
 ```
-
-## Output
-
-- **Logs**: Training progress, validation accuracy, and domain loss are saved in the `logs/` directory.
-- **Plots**: Confusion matrices for the evaluated models are saved in the `logs/plots/` directory.
-- **Checkpoints**: The best model weights (based on validation accuracy and domain loss criteria) are saved in the `checkpoints/` directory.
 
 ## License
 
