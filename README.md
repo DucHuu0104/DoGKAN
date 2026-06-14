@@ -31,7 +31,7 @@
 
 [**Abstract**](#Abstract) •
 [**Overview**](#Overview) •
-[**Dataset**](#Dataset Preparation) •
+[**Dataset**](#Dataset) •
 [**Usage**](#usage) •
 [**Citation**](#citation) •
 [**Contact**](#Contact)
@@ -61,7 +61,7 @@ The code has been tested with Python 3.8+ and PyTorch. To install the required d
 pip install -r requirements.txt
 ```
 
-## Dataset Preparation
+## Dataset
 
 This project supports both the **SEED-IV** and **SEED-V** datasets. You need to extract the differential entropy (DE) features and the channel location file (`channel_62_pos.locs`). 
 
