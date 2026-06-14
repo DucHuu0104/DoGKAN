@@ -53,13 +53,6 @@ Overview of DoGKAN, integrating GCN-based spatial modeling,
 Transformer temporal learning, KAN classification, and
 DANN-based domain adaptation.
 
-## Requirements
-
-The code has been tested with Python 3.8+ and PyTorch. To install the required dependencies, run:
-
-```bash
-pip install -r requirements.txt
-```
 
 ## Dataset
 
