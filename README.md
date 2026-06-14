@@ -24,7 +24,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/Last%20updated%20on-14.06.2026-brightgreen?style=for-the-badge">
-<img src="https://img.shields.io/badge/Written%20by-Duc%20Nguyen%20Huu%20Dang-lime?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/Written%20by-Duc%20Nguyen%20Huu%20Dang-teal?style=for-the-badge"> 
 </p>
 
 <div align="center">
