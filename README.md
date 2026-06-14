@@ -30,8 +30,8 @@
 <div align="center">
 
 [**Abstract**](#Abstract) •
-[**Framework Overview**](#Framework Overview) •
-[**Dataset Preparation**](#Dataset Preparation) •
+[**Overview**](#Overview) •
+[**Dataset**](#Dataset) •
 [**Usage**](#usage) •
 [**Citation**](#citation) •
 [**Contact**](#Contact)
@@ -43,7 +43,7 @@
 >
 > Index Terms: EEG-based Emotion Recognition, Kolmogorov-Arnold Network, Graph Neural Network, Cross-Subject Adaptation, Brain-Computer Interfaces.
 
-## Framework Overview
+## Overview
 
 <p align="center">
   <img src="assets/DoGKAN.png" width="900">
