@@ -24,7 +24,7 @@
 
 <p align="center">
 <img src="https://img.shields.io/badge/Last%20updated%20on-14.06.2026-brightgreen?style=for-the-badge">
-<img src="https://img.shields.io/badge/Written%20by-Duc%20Nguyen%20Huu%20Dang-pink?style=for-the-badge"> 
+<img src="https://img.shields.io/badge/Written%20by-Duc%20Nguyen%20Huu%20Dang-lime?style=for-the-badge"> 
 </p>
 
 <div align="center">
@@ -63,7 +63,7 @@ pip install -r requirements.txt
 
 ## Dataset
 
-This project supports both the **SEED-IV** and **SEED-V** datasets. You need to extract the differential entropy (DE) features and the channel location file (`channel_62_pos.locs`). 
+This project supports both the **SEED-IV** and **SEED-V** datasets.
 
 Please organize your data in the following structure:
 
@@ -119,10 +119,6 @@ If you use this code or concept in your research, please consider citing our ori
 ```bibtex
 Coming soon
 ```
-
-## License
-
-This project is open-sourced under the MIT License.
 
 ## Contact
 For any information, please contact the corresponding author:
