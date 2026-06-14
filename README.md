@@ -30,10 +30,8 @@
 <div align="center">
 
 [**Abstract**](#Abstract) •
-[**Core Contributions**](#core-contributions) •
-[**Repository Structure**](#repository-structure--components) •
-[**Datasets**](#datasets) •
-[**Install**](#install) •
+[**Framework Overview**](#Framework Overview) •
+[**Dataset Preparation**](#Dataset Preparation) •
 [**Usage**](#usage) •
 [**Citation**](#citation) •
 [**Contact**](#Contact)
@@ -119,3 +117,10 @@ python main.py --sessions 1 2 3 --subjects S1_P1 S1_P2
 ## License
 
 This project is open-sourced under the MIT License.
+
+## Contact
+For any information, please contact the corresponding author:
+
+**Duc Nguyen Huu Dang** at AiTA Lab, Faculty of Information Technology, FPT University, Vietnam<br>
+**Email:** [huuduc01042006@gmail.com](mailto:huuduc01042006@gmail.com) or [ducdnhse203583@fpt.edu.vn](mailto:ducdnhse203583@fpt.edu.vn) <br>
+**GitHub:** <link>https://github.com/DucHuu0104/</link>
