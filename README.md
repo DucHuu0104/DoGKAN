@@ -8,7 +8,7 @@
 ## Framework Overview
 
 <p align="center">
-  <img src="assets\DoGKAN.png" width="900">
+  <img src="assets/DoGKAN.png" width="900">
 </p>
 
 Overview of DoGKAN, integrating GCN-based spatial modeling,
@@ -27,7 +27,7 @@ pip install -r requirements.txt
 
 This project supports both the **SEED-IV** and **SEED-V** datasets. You need to extract the differential entropy (DE) features and the channel location file (`channel_62_pos.locs`). 
 
-Please organize your data in the following structure, or update the paths directly in `config.py`.
+Please organize your data in the following structure:
 
 <h4>🔹 SEED-IV </h4>
 <ul>
@@ -45,13 +45,26 @@ Please organize your data in the following structure, or update the paths direct
 
 *Note: SEED-IV data files are typically `.mat` format, while SEED-V data files are typically `.npz` format. The dataset loading scripts expect keys mapping to the respective trial data.*
 
+## Dataset Selection
+
+Choose the dataset in `config.py`:
+
+```python
+DATASET = "SEED_V"
+# DATASET = "SEED_IV"
+```
+
+All dataset-specific paths, labels, class counts, and loaders are selected automatically.
+
+No other file needs to be modified.
+
 ## Usage
 
-You can train the model using a Leave-One-Subject-Out (LOSO) cross-validation strategy. Before running, ensure that `DATA_ROOT` and `LOCS_PATH` in `config.py` point to your desired dataset (SEED-IV or SEED-V).
+You can train the model using a Leave-One-Subject-Out (LOSO) cross-validation strategy. By default, the script trains on session 2.
 
 ### Basic Run
 
-If you place the dataset in the default `data/` directory and configure `config.py` accordingly, you can run:
+If you place the dataset in the default `data/` directory, you can run:
 
 ```bash
 python main.py

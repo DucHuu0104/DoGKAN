@@ -1,43 +1,76 @@
 import torch
 
-# Device
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Data paths (SEED-V)
-DATA_ROOT = "./data/SEED_V/EEG_DE_features"
-# DATA_ROOT = "./data/SEED_IV/EEG_DE_features"
-LOCS_PATH = "./data/SEED_V/channel_62_pos.locs"
-# LOCS_PATH = "./data/SEED_IV/channel_62_pos.locs"
 
-# Labels per session (Disgust:0, Fear:1, Sad:2, Neutral:3, Happy:4)
-SESSION_LABELS = {
-    1: [4, 1, 3, 2, 0, 4, 1, 3, 2, 0, 4, 1, 3, 2, 0],
-    2: [2, 1, 3, 0, 4, 4, 0, 3, 2, 1, 3, 4, 1, 2, 0],
-    3: [2, 1, 3, 0, 4, 4, 0, 3, 2, 1, 3, 4, 1, 2, 0],
-}
+DATASET = "SEED_V"
+# DATASET = "SEED_IV"
 
-# Model
+if DATASET == "SEED_V":
+
+    DATA_ROOT = "./data/SEED_V/EEG_DE_features"
+    LOCS_PATH = "./data/SEED_V/channel_62_pos.locs"
+
+    NUM_CLASSES = 5
+
+    SESSION_LABELS = {
+        1: [4, 1, 3, 2, 0, 4, 1, 3, 2, 0, 4, 1, 3, 2, 0],
+        2: [2, 1, 3, 0, 4, 4, 0, 3, 2, 1, 3, 4, 1, 2, 0],
+        3: [2, 1, 3, 0, 4, 4, 0, 3, 2, 1, 3, 4, 1, 2, 0],
+    }
+    
+    LABEL_NAMES = [
+        "Disgust",
+        "Fear",
+        "Sad",
+        "Neutral",
+        "Happy"
+    ]
+
+elif DATASET == "SEED_IV":
+
+    DATA_ROOT = "./data/SEED_IV/eeg_feature_smooth"
+    LOCS_PATH = "./data/SEED_IV/channel_62_pos.locs"
+
+    NUM_CLASSES = 4
+
+    SESSION_LABELS = {
+        1: [1,2,3,0,2,0,0,1,0,1,2,1,1,1,2,3,2,3,3,0,3,0,3,0],
+        2: [2,1,3,0,0,2,0,2,3,3,2,3,2,0,1,1,2,1,0,3,0,1,3,1],
+        3: [1,2,2,1,3,3,3,1,1,2,1,0,2,3,3,0,2,3,0,0,2,0,1,0],
+    }
+    
+    LABEL_NAMES = [
+        "Happy",
+        "Sad",
+        "Fear",
+        "Neutral"
+    ]
+
+else:
+    raise ValueError(
+        f"Unsupported DATASET = {DATASET}. "
+        f"Choose 'SEED_V' or 'SEED_IV'."
+    )
+
 NUM_NODES = 62
 IN_CHANNELS = 5
-NUM_CLASSES = 5
 
-# Training
 LEARNING_RATE = 5e-4
 NUM_EPOCHS = 300
+
 BATCH_SRC = 16
 BATCH_TGT = 16
 
-# KAN
+
 KAN_GRID_SIZE = 5
 KAN_SPLINE_ORDER = 3
 KAN_REG_COEFF = 0.01
 
-# Transformer
 TRANS_HEADS = 4
 TRANS_D_K = 16
 TRANS_D_V = 16
 TRANS_D_FF = 128
 TRANS_DROPOUT = 0.1
 
-# Reproducibility
 RANDOM_SEED = 2

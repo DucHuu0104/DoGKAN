@@ -7,13 +7,16 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 from config import *
-from dataset import load_seed_v
 from train import train_loso_dann_all_subjects
 from utils import read_locs_to_3d, build_adjacency_matrix, set_seed
 from model import EEG_Transformer_KAN
 
-LABEL_NAMES = ["Disgust", "Fear", "Sad", "Neutral", "Happy"]
-
+if DATASET == "SEED_V":
+    from dataset import load_seed_v as load_dataset
+elif DATASET == "SEED_IV":
+    from dataset import load_seediv_all as load_dataset
+else:
+    raise ValueError(f"Unsupported DATASET = {DATASET}")
 
 def count_parameters(model):
     return sum(p.numel() for p in model.parameters() if p.requires_grad)
@@ -38,10 +41,10 @@ def save_training_log(results, session_summary, sessions, seed, log_dir="logs"):
     os.makedirs(log_dir, exist_ok=True)
     timestamp = time.strftime("%Y%m%d-%H%M%S")
     sess_str = "sess" + "".join(map(str, sessions))
-    log_path = os.path.join(log_dir, f"train_{sess_str}_seed{seed}_{timestamp}.txt")
+    log_path = os.path.join(log_dir, f"{DATASET}_train_{sess_str}_seed{seed}_{timestamp}.txt")
 
     with open(log_path, "w", encoding="utf-8") as f:
-        f.write("SEED-V TRAINING LOG (DoGKAN-DANN)\n")
+        f.write(f"{DATASET} TRAINING LOG (DoGKAN-DANN)\n")
         f.write(f"Timestamp: {timestamp}\nSessions: {sessions}\nSeed: {seed}\n")
         f.write(f"LR: {LEARNING_RATE} | Epochs: {NUM_EPOCHS}\n\n")
 
@@ -90,15 +93,16 @@ def save_training_log(results, session_summary, sessions, seed, log_dir="logs"):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="SEED-V DoGKAN-DANN Training")
+    parser = argparse.ArgumentParser(description=f"{DATASET} DoGKAN-DANN Training")
     parser.add_argument("--sessions", nargs="+", type=int, default=[2])
     parser.add_argument("--subjects", nargs="+", type=str, default=None)
     args = parser.parse_args()
 
     set_seed(RANDOM_SEED)
 
-    print(f"Loading SEED-V (Sessions: {args.sessions})")
-    X, y, persons, trials = load_seed_v(DATA_ROOT, session_ids=args.sessions)
+    print(f"Loading {DATASET} (Sessions: {args.sessions})")
+    
+    X, y, persons, trials = load_dataset(DATA_ROOT,session_ids=args.sessions)
     print(f"Data: X={X.shape}, y={y.shape}")
 
     A = None

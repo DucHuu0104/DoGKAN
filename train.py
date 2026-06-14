@@ -140,7 +140,7 @@ def train_loso_dann(target_person, X, y, persons, adj=None, save_prefix=""):
         m.load_state_dict(state)
         m.eval()
 
-        torch.save(state, f"checkpoints/best_model_{prefix}{target_person}_{name}.pth")
+        torch.save(state, f"checkpoints/{DATASET}_best_model_{prefix}{target_person}_{name}.pth")
 
         Xt_eval = torch.from_numpy(X_tgt).float().to(DEVICE)
         yt_eval = torch.from_numpy(y_tgt).long().to(DEVICE)
