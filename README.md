@@ -31,7 +31,7 @@
 
 [**Abstract**](#Abstract) •
 [**Overview**](#Overview) •
-[**Dataset**](#Dataset) •
+[**Dataset**](#Dataset Preparation) •
 [**Usage**](#usage) •
 [**Citation**](#citation) •
 [**Contact**](#Contact)
@@ -112,6 +112,12 @@ You can specify which sessions and subjects to evaluate on via command-line argu
 
 ```bash
 python main.py --sessions 1 2 3 --subjects S1_P1 S1_P2
+```
+
+## Citation
+If you use this code or concept in your research, please consider citing our original manuscript:
+```bibtex
+Coming soon
 ```
 
 ## License
