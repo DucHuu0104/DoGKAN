@@ -1,6 +1,19 @@
-# DoGKAN: Domain Generalized Kolmogorov-Arnold Networks for EEG Emotion Recognition
+# DoGKAN: A Domain-Adaptive Kolmogorov-Arnold Network for Cross-Subject EEG-Based Emotion Recognition
 
-This repository contains the PyTorch implementation of the **DoGKAN** model. DoGKAN combines Graph Convolutional Networks (GCN) for spatial feature extraction, Transformers for temporal dynamics, Kolmogorov-Arnold Networks (KAN) for classification, and Domain Adversarial Neural Networks (DANN) to achieve domain-generalized emotion recognition from EEG signals.
+## Abstract 
+> Electroencephalogram (EEG)-based emotion recognition encounters considerable challenges due to inter-subject variability and complex spatio-temporal dependencies, limiting the generalization of existing models in cross-subject contexts. This work presents DoGKAN, a hybrid architecture capable of integrating spatial dependency modeling, temporal sequence learning, and cross-subject domain alignment within a unified framework. Specifically, a Graph Convolutional Network (GCN) is employed to capture spatial interconnections among EEG electrodes, while a Transformer encoder models temporal dynamics of EEG sequences. To enhance nonlinear representation capacity, we replace traditional fully connected layers with Kolmogorov–Arnold Network (KAN), which utilizes learnable spline-based nonlinear mappings to provide greater representational flexibility and built-in sparsity regularization. Furthermore, a Domain-Adversarial Neural Network (DANN) with a Gradient Reversal Layer (GRL) is incorporated to mitigate cross-subject distribution discrepancies. The model's average accuracy under the Leave-One-Subject-Out (LOSO) protocol reaches 77.89\% on SEED-IV and 84.86\% on SEED-V. The results highlight the effectiveness of applying graph-based spatial modeling, Transformer-based temporal learning, and KAN-driven adaptive nonlinear classification for robust cross-subject EEG-based affective computing. 
+>
+> Index Terms: EEG-based Emotion Recognition, Kolmogorov-Arnold Network, Graph Neural Network, Cross-Subject Adaptation, Brain-Computer Interfaces.
+
+## Framework Overview
+
+<p align="center">
+  <img src="assets\DoGKAN.png" width="900">
+</p>
+
+Overview of DoGKAN, integrating GCN-based spatial modeling,
+Transformer temporal learning, KAN classification, and
+DANN-based domain adaptation.
 
 ## Requirements
 
@@ -12,45 +25,41 @@ pip install -r requirements.txt
 
 ## Dataset Preparation
 
-This project uses the **SEED-V** dataset. You need to extract the differential entropy (DE) features and the channel location file (`channel_62_pos.locs`). 
+This project supports both the **SEED-IV** and **SEED-V** datasets. You need to extract the differential entropy (DE) features and the channel location file (`channel_62_pos.locs`). 
 
-Please organize your data in the following structure, or provide the paths via command-line arguments.
+Please organize your data in the following structure, or update the paths directly in `config.py`.
 
-```
-data/
-└── SEED_V/
-    ├── EEG_DE_features/
-    │   ├── 1_123.npz
-    │   ├── 2_123.npz
-    │   └── ...
-    └── channel_62_pos.locs
-```
+<h4>🔹 SEED-IV </h4>
+<ul>
+  <li><strong>Description:</strong> EEG emotion recognition dataset with 4 emotion classes collected from 15 subjects across 3 sessions using 62-channel EEG recordings.</li>
+  <li><strong>Access:</strong> Requires signing a license agreement.</li>
+  <li><a href="https://bcmi.sjtu.edu.cn/home/seed/seed-iv.html" target="_blank">🔗 Download Link</a></li>
+</ul>
 
-*Note: The script expects `.npz` files for the SEED-V dataset, with keys mapping to the trial data.*
+<h4>🔹 SEED-V</h4>
+<ul>
+  <li><strong>Description:</strong> EEG emotion recognition dataset with 5 emotion classes collected from 16 subjects across 3 sessions using 62-channel EEG recordings.</li>
+  <li><strong>Access:</strong> Requires signing a license agreement.</li>
+  <li><a href="https://bcmi.sjtu.edu.cn/home/seed/seed-v.html" target="_blank">🔗 Download Link</a></li>
+</ul>
+
+*Note: SEED-IV data files are typically `.mat` format, while SEED-V data files are typically `.npz` format. The dataset loading scripts expect keys mapping to the respective trial data.*
 
 ## Usage
 
-You can train the model using a Leave-One-Subject-Out (LOSO) cross-validation strategy. By default, the script trains on session 2. 
+You can train the model using a Leave-One-Subject-Out (LOSO) cross-validation strategy. Before running, ensure that `DATA_ROOT` and `LOCS_PATH` in `config.py` point to your desired dataset (SEED-IV or SEED-V).
 
 ### Basic Run
 
-If you place the dataset in the default `data/SEED_V/` directory as shown above, you can simply run:
+If you place the dataset in the default `data/` directory and configure `config.py` accordingly, you can run:
 
 ```bash
 python main.py
 ```
 
-### Specifying Custom Data Paths
-
-If your dataset is located elsewhere, use the `--data_root` and `--locs_path` arguments:
-
-```bash
-python main.py --data_root /path/to/EEG_DE_features --locs_path /path/to/channel_62_pos.locs
-```
-
 ### Specifying Sessions and Subjects
 
-You can also specify which sessions and subjects to evaluate on:
+You can specify which sessions and subjects to evaluate on via command-line arguments:
 
 ```bash
 python main.py --sessions 1 2 3 --subjects S1_P1 S1_P2
