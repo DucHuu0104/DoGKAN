@@ -4,8 +4,8 @@ import torch
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Data paths (SEED-V)
-DATA_ROOT = r"D:\EEG_KAN\SEED_V\EEG_DE_features"
-LOCS_PATH = r"D:\EEG_KAN\SEED_V\channel_62_pos.locs"
+DATA_ROOT = "./data/SEED_V/EEG_DE_features"
+LOCS_PATH = "./data/SEED_V/channel_62_pos.locs"
 
 # Labels per session (Disgust:0, Fear:1, Sad:2, Neutral:3, Happy:4)
 SESSION_LABELS = {
